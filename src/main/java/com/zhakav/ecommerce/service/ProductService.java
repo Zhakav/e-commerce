@@ -6,8 +6,8 @@ import com.zhakav.ecommerce.entity.Product;
 
 public interface ProductService {
     
-    public Product save(Product product, long inventoryId, long categoryId, long supplierId);
-    public Product update(Product product, long inventoryId, long categoryId, long supplierId);
+    public Product save(Product product, long categoryId, long supplierId, int quantity);
+    public Product update(Product product, long categoryId, long supplierId, int quantity);
     public Product get(long id);
     public void delete(long id);
     public void setDiscount(long productId, long discountId);

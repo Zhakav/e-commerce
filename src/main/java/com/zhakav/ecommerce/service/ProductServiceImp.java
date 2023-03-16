@@ -29,10 +29,13 @@ public class ProductServiceImp implements ProductService {
     DiscountRepository discountRepository;
 
     @Override
-    public Product save(Product product, long inventoryId, long categoryId, long supplierId) {
+    public Product save(Product product, long categoryId, long supplierId, int quantity) {
 
-        ProductInventory inventory=ProductInventoryServiceImp.unwrap(
-            inventoryRepository.findById(inventoryId), inventoryId);
+        ProductInventory inventory=new ProductInventory();
+        inventory.setQuantity(quantity);
+        inventory.setProduct(product);
+
+        inventoryRepository.save(inventory);
 
         product.setInventory(inventory);
 
@@ -51,9 +54,9 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Product update(Product product, long inventoryId, long categoryId, long supplierId) {
+    public Product update(Product product, long inventoryId, long categoryId, int quantity) {
         
-        return save(product, inventoryId, categoryId, supplierId);
+        return save(product, inventoryId, categoryId, quantity);
 
     }
 
