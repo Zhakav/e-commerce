@@ -55,17 +55,17 @@ public class OrderDetail {
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "orderDetail")
     private List<OrderItem> orderItems;
 
-    @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_detail_id", referencedColumnName = "payment_detail_id")
     private PaymentDetail paymentDetail;
 
     @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user; 
 

@@ -36,7 +36,7 @@ public class ProductInventory {
     @NonNull
     @Min(value = 0)
     @Column(name = "quantity" , nullable = false)
-    @NotBlank(message = "Quantity cannot be blank!!!")
+    //@NotBlank(message = "Quantity cannot be blank!!!")
     private Integer quantity;
 
     @Column(name = "created_at")

@@ -9,6 +9,7 @@ com\zhakav\ecommerce\validators\MobileValidator.class
 com\zhakav\ecommerce\entity\ProductInventory.class
 com\zhakav\ecommerce\repository\CartItemRepository.class
 com\zhakav\ecommerce\repository\UserPaymentRepository.class
+com\zhakav\ecommerce\service\PurchasingServiceImp.class
 com\zhakav\ecommerce\repository\OrderItemRepository.class
 com\zhakav\ecommerce\service\DiscountServiceImp.class
 com\zhakav\ecommerce\service\OrderingService.class
@@ -18,6 +19,7 @@ com\zhakav\ecommerce\entity\ShoppingSession.class
 com\zhakav\ecommerce\service\AdminUserService.class
 com\zhakav\ecommerce\validators\Username.class
 com\zhakav\ecommerce\repository\UserAddressRepository.class
+com\zhakav\ecommerce\web\OrderingController.class
 com\zhakav\ecommerce\repository\ProductRepository.class
 com\zhakav\ecommerce\entity\Product.class
 com\zhakav\ecommerce\repository\SupplierRepository.class
@@ -46,6 +48,7 @@ com\zhakav\ecommerce\service\ProductService.class
 com\zhakav\ecommerce\validators\PostalCodeValidator.class
 com\zhakav\ecommerce\repository\ShoppingSessionRepository.class
 com\zhakav\ecommerce\service\SupplierServiceImp.class
+com\zhakav\ecommerce\service\PurchasingService.class
 com\zhakav\ecommerce\validators\TelephoneValidator.class
 com\zhakav\ecommerce\service\UserAddressService.class
 com\zhakav\ecommerce\validators\PasswordValidator.class

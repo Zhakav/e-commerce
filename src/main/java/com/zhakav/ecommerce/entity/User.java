@@ -85,6 +85,6 @@ public class User {
     private ShoppingSession session;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private OrderDetail orderDetail;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetail;
 }

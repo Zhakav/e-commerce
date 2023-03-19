@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.CartItem;
+import com.zhakav.ecommerce.entity.Product;
 import com.zhakav.ecommerce.entity.ShoppingSession;
 import com.zhakav.ecommerce.entity.User;
 import com.zhakav.ecommerce.repository.CartItemRepository;
@@ -30,6 +31,7 @@ public class OrderingServiceImp implements OrderingService {
 
         session.setUser(user);
         saveCartItemsToSession(cartItems, session);
+        session.setTotal(calculateTotal(cartItems));
 
         sessionRepository.save(session);
 
@@ -48,11 +50,10 @@ public class OrderingServiceImp implements OrderingService {
 
         cartItemRepository.deleteAllBySessionId(getByUser(userId).getId());
         sessionRepository.deleteByUserId(userId);
-        
+
     }
 
-    @Override
-    public void saveCartItemsToSession(List<CartItem> cartItems, ShoppingSession session) {
+    private void saveCartItemsToSession(List<CartItem> cartItems, ShoppingSession session) {
 
         session.setCartItems(cartItems);
 
@@ -65,21 +66,29 @@ public class OrderingServiceImp implements OrderingService {
         }
     }
 
+    private long calculateTotal(List<CartItem> cartItems){
+
+        long total=0;
+        Product product;
+
+        for (CartItem cartItem : cartItems) {
+         
+            product=cartItem.getProduct();
+
+            total+=(cartItem.getQuantity()*product.getPrice());
+
+        }
+
+        return total;
+
+    }
+
     public static ShoppingSession unwrapSession(Optional<ShoppingSession> session , long id){
     
         if(session.isPresent())
             return session.get();
         else
             throw new RuntimeException("Cannot find shopping session with id : " + id);
-
-    }
-
-    public static CartItem unwrapCartItem(Optional<CartItem> cartItem , long id){
-    
-        if(cartItem.isPresent())
-            return cartItem.get();
-        else
-            throw new RuntimeException("Cannot find shopping session with user id : " + id);
 
     }
     

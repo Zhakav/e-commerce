@@ -16,6 +16,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -38,7 +39,7 @@ public class CartItem {
     @NonNull
     @Min(value = 0)
     @Column(name = "quantity" , nullable = false)
-    @NotBlank(message = "Quantity cannot be blank!!!")
+    @NotNull(message = "Quantity cannot be blank!!!")
     private Integer quantity;
 
     @Column(name = "created_at")
@@ -48,12 +49,13 @@ public class CartItem {
     private LocalDateTime modifiedAt;
 
     @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
     @JsonIgnore
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne( optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "session_id", referencedColumnName = "session_id")
     private ShoppingSession session;
+    
 }

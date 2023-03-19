@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,6 +19,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -40,7 +42,7 @@ public class ShoppingSession {
     @NonNull
     @Min(value = 0)
     @Column(name = "total" , nullable = false)
-    @NotBlank(message = "Total cannot be blank!!!")
+    @NotNull(message = "Total cannot be blank!!!")
     private Long total;
 
     @Column(name = "created_at")
@@ -50,11 +52,10 @@ public class ShoppingSession {
     private LocalDateTime modifiedAt;
 
     @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @OneToOne(optional = false, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", unique = true)
     private User user; 
 
-    @JsonIgnore
     @OneToMany(mappedBy = "session")
     private List<CartItem> cartItems;
 }

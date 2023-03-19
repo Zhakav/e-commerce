@@ -20,6 +20,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -57,18 +58,18 @@ public class Product {
     @NonNull
     @Min(value = 0)
     @Column(name = "price" , nullable = false)
-    @NotBlank(message = "Product price cannot be blank!!!")
+    @NotNull(message = "Product price cannot be blank!!!")
     private Long price;
 
     @NonNull
     @URL(message = "Invalid URL")
-    @NotBlank(message = "Product price cannot be blank!!!")
+    @NotNull(message = "Product main picture cannot be blank!!!")
     @Column(name = "main_picture" , nullable = false)
     private String mainPicture;
 
     @NonNull
-    @URL(message = "Invalid URL")
-    @NotBlank(message = "Product price cannot be blank!!!")
+    //@URL(message = "Invalid URL")
+    @NotNull(message = "Product price cannot be blank!!!")
     @Column(name = "pictures" , nullable = false)
     private List<String> pictures;
 
@@ -94,7 +95,7 @@ public class Product {
     private ProductCategory category;
 
     @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
     private Supplier supplier;
 
