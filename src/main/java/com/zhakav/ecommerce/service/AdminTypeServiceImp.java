@@ -37,6 +37,11 @@ public class AdminTypeServiceImp implements AdminTypeService {
     }
 
     @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
     public List<AdminType> getAll() {
         return (List<AdminType>)repository.findAll();
     }

@@ -1,5 +1,6 @@
 package com.zhakav.ecommerce.entity;
 
+import jakarta.validation.constraints.NotNull;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -60,7 +61,7 @@ public class AdminUser {
     private String lastName;
 
     @NonNull
-    @NotBlank(message = "Age cannot be blank!")
+    @NotNull(message = "Age cannot be null!")
     @Min(value = 7, message = "Age cannot be less than 7")
     @Column(name = "age", nullable = false)
     private int age;
@@ -85,8 +86,8 @@ public class AdminUser {
     @Column(name = "modified_at")
     private LocalDateTime ModifiedAt;
 
-    @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    
+    @ManyToOne(optional = false)
     @JoinColumn(name = "admin_type_id", referencedColumnName ="admin_type_id" )
     private AdminType adminType;
 

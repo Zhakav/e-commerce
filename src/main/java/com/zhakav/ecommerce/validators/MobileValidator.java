@@ -22,7 +22,7 @@ public class MobileValidator implements ConstraintValidator<Mobile,String> {
         Pattern p = Pattern.compile(regex);
 
         if (phoneNumber == null) 
-            return false;
+            return true;
         
 
         Matcher m = p.matcher(phoneNumber);

@@ -66,6 +66,11 @@ public class User {
     @NotBlank(message = "Phone number cannot be blank!!!")
     private String mobile;
 
+    @NonNull
+    @Column(name = "gender")
+    @NotBlank(message = "Gender cannot be blank!!!!")
+    private String gender;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

@@ -2,6 +2,7 @@ package com.zhakav.ecommerce.entity;
 
 import java.util.List;
 
+import jakarta.persistence.*;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,13 +11,6 @@ import com.zhakav.ecommerce.validators.PostalCode;
 import com.zhakav.ecommerce.validators.Telephone;
 
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -99,7 +93,7 @@ public class Supplier {
     private LocalDateTime ModifiedAt;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
     private List<Product> products;
 
 }

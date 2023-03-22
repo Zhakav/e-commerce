@@ -56,7 +56,7 @@ public class PaymentDetail {
     private LocalDateTime modifiedAt;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "paymentDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "paymentDetail")
     private OrderDetail orderDetail;
 
 }

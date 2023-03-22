@@ -90,12 +90,12 @@ public class Product {
     private LocalDateTime deletedAt;
 
     @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "product_category_id", referencedColumnName = "product_category_id")
     private ProductCategory category;
 
     @JsonIgnore
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
     private Supplier supplier;
 
@@ -105,7 +105,7 @@ public class Product {
     private ProductInventory inventory;
 
     @JsonIgnore
-    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @OneToOne(optional = true)
     @JoinColumn(name = "discount_id", referencedColumnName = "discount_id")
     private Discount discount;
 

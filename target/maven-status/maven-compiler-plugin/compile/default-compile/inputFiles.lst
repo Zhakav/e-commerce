@@ -14,6 +14,7 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\re
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\Mobile.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\SupplierService.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\SupplierRepository.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\UserController.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\ProductServiceImp.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\AdminTypeRepository.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\ProductInventoryServiceImp.java
@@ -33,6 +34,7 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\en
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\Telephone.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\TelephoneValidator.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\CartItem.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\AdminController.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\ProductCategoryServiceImp.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\UserService.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\ProductRepository.java
@@ -53,8 +55,10 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\va
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\DiscountRepository.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\UserPayment.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\OrderingServiceImp.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\AdminTypeController.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\PurchasingServiceImp.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\ECommerceApplication.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\UserAddressController.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\Supplier.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\MobileValidator.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\UserPaymentServiceImp.java

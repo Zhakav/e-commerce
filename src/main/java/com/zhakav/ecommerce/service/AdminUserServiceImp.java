@@ -42,6 +42,16 @@ public class AdminUserServiceImp implements AdminUserService{
     }
 
     @Override
+    public void deleteByType(long typeId) {
+        repository.deleteByAdminTypeId(typeId);
+    }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
     public List<AdminUser> getByType(long adminTypeId) {
         return repository.findByAdminTypeId(adminTypeId);
     }

@@ -52,10 +52,10 @@ public class ShoppingSession {
     private LocalDateTime modifiedAt;
 
     @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", unique = true)
     private User user; 
 
-    @OneToMany(mappedBy = "session")
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
 }

@@ -9,6 +9,7 @@ public interface AdminTypeService {
     public AdminType update(AdminType adminType);
     public AdminType get(long id);
     public void delete(long id);
+    public void deleteAll();
     public List<AdminType> getAll();
 
 }

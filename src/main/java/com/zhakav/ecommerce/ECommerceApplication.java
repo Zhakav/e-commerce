@@ -43,7 +43,7 @@ public class ECommerceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		//User
 		User user=new User("zhakav","3Mosina@1982","zhakav","hesari","09387198078");
 		userService.save(user);
@@ -73,7 +73,7 @@ public class ECommerceApplication implements CommandLineRunner {
 
 		cartItemRepository.save(cartItem1);
 		sessionRepository.save(session);
-
+		*/
 	}
 
 }

@@ -12,6 +12,7 @@ com\zhakav\ecommerce\repository\UserPaymentRepository.class
 com\zhakav\ecommerce\service\PurchasingServiceImp.class
 com\zhakav\ecommerce\repository\OrderItemRepository.class
 com\zhakav\ecommerce\service\DiscountServiceImp.class
+com\zhakav\ecommerce\web\UserAddressController.class
 com\zhakav\ecommerce\service\OrderingService.class
 com\zhakav\ecommerce\service\DiscountService.class
 com\zhakav\ecommerce\entity\PaymentDetail.class
@@ -51,11 +52,14 @@ com\zhakav\ecommerce\service\SupplierServiceImp.class
 com\zhakav\ecommerce\service\PurchasingService.class
 com\zhakav\ecommerce\validators\TelephoneValidator.class
 com\zhakav\ecommerce\service\UserAddressService.class
+com\zhakav\ecommerce\web\AdminTypeController.class
 com\zhakav\ecommerce\validators\PasswordValidator.class
 com\zhakav\ecommerce\repository\ProductCategoryRepository.class
 com\zhakav\ecommerce\service\UserServiceImp.class
 com\zhakav\ecommerce\entity\AdminUser.class
 com\zhakav\ecommerce\service\UserService.class
+com\zhakav\ecommerce\web\UserController.class
+com\zhakav\ecommerce\web\AdminController.class
 com\zhakav\ecommerce\ECommerceApplication.class
 com\zhakav\ecommerce\entity\Shipper.class
 com\zhakav\ecommerce\entity\Supplier.class

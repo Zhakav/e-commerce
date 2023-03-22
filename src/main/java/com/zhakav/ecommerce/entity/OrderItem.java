@@ -48,12 +48,12 @@ public class OrderItem {
     private LocalDateTime modifiedAt;
 
     @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "order_detail_id", referencedColumnName = "order_detail_id")
     private OrderDetail orderDetail;
 
     @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(optional = false)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 

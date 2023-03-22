@@ -23,10 +23,10 @@ public class TelephoneValidator implements ConstraintValidator<Telephone,String>
             "077","038", "056" ,"051", "058", "023", "024", "061", "054",
             "071", "025" ,"087" ,"034", "083", "074", "017", "013", "066",
             "011", "086", "076", "081", "035"  
-                    )); 
-        
-        if (phoneNumber == null) 
-            return false;
+                    ));
+
+        if (phoneNumber == null)
+            return true;
             
         boolean result=false;
         String regex = "[0-9]{8,8}";

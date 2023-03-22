@@ -56,7 +56,7 @@ public class OrderDetail {
     private Product product;
 
 
-    @OneToMany(mappedBy = "orderDetail")
+    @OneToMany(mappedBy = "orderDetail", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
 
@@ -65,12 +65,12 @@ public class OrderDetail {
     private PaymentDetail paymentDetail;
 
     @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user; 
 
     @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "shipper_id", referencedColumnName = "shipper_id")
     private Shipper shipper;
 

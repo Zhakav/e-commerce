@@ -49,12 +49,12 @@ public class CartItem {
     private LocalDateTime modifiedAt;
 
     @JsonIgnore
-    @OneToOne(optional = false, cascade = CascadeType.MERGE)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
     @JsonIgnore
-    @ManyToOne( optional = false,cascade = CascadeType.ALL)
+    @ManyToOne( optional = false)
     @JoinColumn(name = "session_id", referencedColumnName = "session_id")
     private ShoppingSession session;
     

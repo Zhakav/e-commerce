@@ -10,7 +10,7 @@ import jakarta.transaction.Transactional;
 
 public interface CartItemRepository extends CrudRepository<CartItem,Long> {
     
-    public List<CartItem> getBySessionId(long sessionId);
+    public List<CartItem> findBySessionId(long sessionId);
 
     @Transactional
     public void deleteAllBySessionId(long sessionId);

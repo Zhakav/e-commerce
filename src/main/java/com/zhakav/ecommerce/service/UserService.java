@@ -9,7 +9,9 @@ public interface UserService {
     public User save(User user);
     public User update(User user);
     public User get(long id);
-    public void delete(long id);
     public List<User> getAll();
+    public void delete(long id);
+    public void deleteAll();
+
 
 }

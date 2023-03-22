@@ -69,7 +69,7 @@ public class UserAddress {
     private String telephone;
 
     @JsonIgnore
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 

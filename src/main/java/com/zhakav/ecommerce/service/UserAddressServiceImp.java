@@ -40,7 +40,17 @@ public class UserAddressServiceImp implements UserAddressService {
 
     @Override
     public void delete(long id) {
-        delete(id);
+        repository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByUserId(long userId) {
+        repository.deleteByUserId(userId);
+    }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
     }
 
     @Override
