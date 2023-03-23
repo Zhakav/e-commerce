@@ -17,23 +17,32 @@ public class ProductInventoryServiceImp implements ProductInventoryService {
     ProductInventoryRepository repository;
 
     @Override
-    public ProductInventory save(ProductInventory inventory) {
-        return repository.save(inventory);
-    }
+    public ProductInventory update(int quantity, long productId) {
 
-    @Override
-    public ProductInventory update(ProductInventory inventory) {
+        ProductInventory inventory=unwrap(repository.findByProductId(productId),productId);
+        inventory.setQuantity(quantity);
         return repository.save(inventory);
+
     }
 
     @Override
     public ProductInventory get(long id) {
-        return unwrap(repository.findById(null), id);
+        return unwrap(repository.findById(id), id);
     }
 
     @Override
     public void delete(long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByProduct(long productId) {
+        repository.deleteByProductId(productId);
+    }
+
+    @Override
+    public ProductInventory getByProduct(long productId) {
+        return unwrap(repository.findByProductId(productId),productId);
     }
 
     @Override

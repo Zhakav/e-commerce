@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zhakav.ecommerce.validators.Telephone;
@@ -37,6 +38,6 @@ public class Shipper {
 
     @JsonIgnore
     @OneToMany(mappedBy = "shipper", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetail;
+    private Set<OrderDetail> orderDetail;
 
 }

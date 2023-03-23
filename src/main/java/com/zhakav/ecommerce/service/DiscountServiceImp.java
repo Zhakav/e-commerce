@@ -37,6 +37,11 @@ public class DiscountServiceImp implements DiscountService {
     }
 
     @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
     public List<Discount> getAll() {
         return (List<Discount>) repository.findAll();
     }

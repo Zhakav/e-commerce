@@ -2,6 +2,7 @@ package com.zhakav.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class OrderingServiceImp implements OrderingService {
     UserRepository userRepository;
 
     @Override
-    public ShoppingSession order(List<CartItem> cartItems, long userId) {
+    public ShoppingSession order(Set<CartItem> cartItems, long userId) {
 
         ShoppingSession session=new ShoppingSession();
         User user=UserServiceImp.unwrap(userRepository.findById(userId), userId);
@@ -53,7 +54,7 @@ public class OrderingServiceImp implements OrderingService {
 
     }
 
-    private void saveCartItemsToSession(List<CartItem> cartItems, ShoppingSession session) {
+    private void saveCartItemsToSession(Set<CartItem> cartItems, ShoppingSession session) {
 
         session.setCartItems(cartItems);
 
@@ -66,7 +67,7 @@ public class OrderingServiceImp implements OrderingService {
         }
     }
 
-    private long calculateTotal(List<CartItem> cartItems){
+    private long calculateTotal(Set<CartItem> cartItems){
 
         long total=0;
         Product product;
@@ -89,6 +90,15 @@ public class OrderingServiceImp implements OrderingService {
             return session.get();
         else
             throw new RuntimeException("Cannot find shopping session with id : " + id);
+
+    }
+
+    public static CartItem unwrapCartItem(Optional<CartItem> cartItem, long id){
+
+        if(cartItem.isPresent())
+            return cartItem.get();
+        else
+            throw new RuntimeException("Cannot find cart item with id : " + id);
 
     }
     

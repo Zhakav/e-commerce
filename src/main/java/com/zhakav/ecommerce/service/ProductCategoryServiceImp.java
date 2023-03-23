@@ -36,6 +36,11 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
     }
 
     @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
     public List<ProductCategory> getAll() {
         return (List<ProductCategory>) repository.findAll();
     }

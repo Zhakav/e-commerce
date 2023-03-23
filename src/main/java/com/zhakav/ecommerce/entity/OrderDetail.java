@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDateTime;
 
@@ -57,7 +58,7 @@ public class OrderDetail {
 
 
     @OneToMany(mappedBy = "orderDetail", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+    private Set<OrderItem> orderItems;
 
 
     @OneToOne(optional = true, cascade = CascadeType.ALL)

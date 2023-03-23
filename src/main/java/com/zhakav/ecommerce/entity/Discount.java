@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDateTime;
 
@@ -59,5 +60,5 @@ public class Discount {
 
     @JsonIgnore
     @OneToMany(mappedBy = "discount")
-    private List<Product> products;
+    private Set<Product> products;
 }

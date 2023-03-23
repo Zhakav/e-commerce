@@ -4,18 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.entity.*;
+import com.zhakav.ecommerce.repository.*;
 import org.springframework.stereotype.Service;
-
-import com.zhakav.ecommerce.entity.CartItem;
-import com.zhakav.ecommerce.entity.OrderDetail;
-import com.zhakav.ecommerce.entity.OrderItem;
-import com.zhakav.ecommerce.entity.PaymentDetail;
-import com.zhakav.ecommerce.entity.ShoppingSession;
-import com.zhakav.ecommerce.repository.CartItemRepository;
-import com.zhakav.ecommerce.repository.OrderDetailRepository;
-import com.zhakav.ecommerce.repository.OrderItemRepository;
-import com.zhakav.ecommerce.repository.PaymentDetailRepository;
-import com.zhakav.ecommerce.repository.ShoppingSessionRepository;
 
 import jakarta.websocket.Session;
 import lombok.AllArgsConstructor;
@@ -29,6 +20,8 @@ public class PurchasingServiceImp implements PurchasingService {
     OrderItemRepository orderItemRepository;
     OrderDetailRepository orderDetailRepository;
     PaymentDetailRepository paymentRepository;
+    ProductInventoryRepository inventoryRepository;
+    ProductRepository productRepository;
 
     @Override
     public void startPurchasing(long userId) {
@@ -48,7 +41,7 @@ public class PurchasingServiceImp implements PurchasingService {
 
         if(status == "Successful"){
 
-            deleteSession(userId);
+            successfulPurchase(userId);
 
         }
 
@@ -86,12 +79,37 @@ public class PurchasingServiceImp implements PurchasingService {
 
     }
 
-    private void deleteSession(long userId){
+    private void successfulPurchase(long userId){
 
-        long sessionId=OrderingServiceImp.unwrapSession(sessionRepository.findByUserId(userId), userId).getId();
+        ShoppingSession session=OrderingServiceImp.unwrapSession(sessionRepository.findByUserId(userId), userId);
 
-        cartItemRepository.deleteAllBySessionId(sessionId);
-        sessionRepository.deleteById(sessionId);
+        List<CartItem> cartItems=session.getCartItems();
+
+        ProductInventory inventory;
+        Product product;
+
+        for (CartItem cartItem:cartItems) {
+
+            inventory= ProductInventoryServiceImp.unwrap(inventoryRepository.
+                    findByProductId(cartItem.getProduct().getId()),userId);
+
+            inventory.setQuantity(inventory.getQuantity()-1);
+
+            if(inventory.getQuantity()==0){
+
+                product=inventory.getProduct();
+                product.setAvailable(false);
+                productRepository.save(product);
+
+            }
+
+            inventoryRepository.save(inventory);
+
+        }
+
+        //Deleting temporary shopping session and cart items
+        cartItemRepository.deleteAllBySessionId(session.getId());
+        sessionRepository.deleteById(session.getId());
 
     }
     

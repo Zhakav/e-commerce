@@ -49,7 +49,7 @@ public class ProductInventory {
     private LocalDateTime deletedAt;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "inventory", cascade = CascadeType.ALL,optional = false)
+    @OneToOne(mappedBy = "inventory",optional = false)
     private Product product;
 
 }

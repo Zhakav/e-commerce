@@ -10,6 +10,7 @@ public interface ProductCategoryService {
     public ProductCategory update(ProductCategory category);
     public ProductCategory get(long id);
     public void delete(long id);
+    public void deleteAll();
     public List<ProductCategory> getAll();
 
 }

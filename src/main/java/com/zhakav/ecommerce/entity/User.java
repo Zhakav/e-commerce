@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDateTime;
 
@@ -79,11 +80,11 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserAddress> userAddresses;
+    private Set<UserAddress> userAddresses;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserPayment> userPayments;
+    private Set<UserPayment> userPayments;
 
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -91,5 +92,5 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetail;
+    private Set<OrderDetail> orderDetail;
 }

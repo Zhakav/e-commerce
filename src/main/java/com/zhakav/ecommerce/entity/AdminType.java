@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDateTime;
 
@@ -47,5 +48,5 @@ public class AdminType {
 
     @JsonIgnore
     @OneToMany(mappedBy = "adminType", cascade = CascadeType.ALL)
-    List<AdminUser> adminUsers;
+    Set<AdminUser> adminUsers;
 }

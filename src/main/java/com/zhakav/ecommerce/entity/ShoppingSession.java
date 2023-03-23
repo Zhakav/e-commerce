@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDateTime;
 
@@ -57,5 +58,5 @@ public class ShoppingSession {
     private User user; 
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
-    private List<CartItem> cartItems;
+    private Set<CartItem> cartItems;
 }

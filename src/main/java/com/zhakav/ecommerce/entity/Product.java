@@ -69,9 +69,14 @@ public class Product {
 
     @NonNull
     //@URL(message = "Invalid URL")
-    @NotNull(message = "Product price cannot be blank!!!")
+    @NotNull(message = "Product pictures cannot be blank!!!")
     @Column(name = "pictures" , nullable = false)
     private List<String> pictures;
+
+    @NonNull
+    @NotNull(message = "Product availability cannot be blank!!!")
+    @Column(name = "available" , nullable = false)
+    boolean available;
 
     @Min(value = 0)
     @Column(name = "size")

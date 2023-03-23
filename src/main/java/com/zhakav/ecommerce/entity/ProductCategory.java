@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import org.joda.time.LocalDateTime;
@@ -48,5 +49,5 @@ public class ProductCategory {
 
     @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Product> products;
+    private Set<Product> products;
 }

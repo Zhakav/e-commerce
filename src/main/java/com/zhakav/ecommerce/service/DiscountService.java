@@ -10,6 +10,7 @@ public interface DiscountService {
     public Discount update(Discount discount);
     public Discount get(long id);
     public void delete(long id);
+    public void deleteAll();
     public List<Discount> getAll();
 
 }
