@@ -52,17 +52,17 @@ public class Product {
 
     @NonNull
     @Column(name = "SKU" , nullable = false)
-    @NotBlank(message = "Product SKU cannot be blank!!!")
-    private String SKU;
+    @NotNull(message = "Product SKU cannot be Null!!!")
+    private String sku;
 
     @NonNull
     @Min(value = 0)
     @Column(name = "price" , nullable = false)
-    @NotNull(message = "Product price cannot be blank!!!")
+    @NotNull(message = "Product price cannot be Null!!!")
     private Long price;
 
     @NonNull
-    @URL(message = "Invalid URL")
+    //@URL(message = "Invalid URL")
     @NotNull(message = "Product main picture cannot be blank!!!")
     @Column(name = "main_picture" , nullable = false)
     private String mainPicture;
@@ -95,7 +95,7 @@ public class Product {
     private LocalDateTime deletedAt;
 
     @JsonIgnore
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "product_category_id", referencedColumnName = "product_category_id")
     private ProductCategory category;
 

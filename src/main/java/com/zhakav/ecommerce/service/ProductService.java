@@ -10,6 +10,7 @@ public interface ProductService {
     public Product update(Product product, long categoryId, long supplierId, int quantity);
     public Product get(long id);
     public void delete(long id);
+    public void deleteAll();
     public void setDiscount(long productId, long discountId);
     public Product getByInventory(long inventoryId);
     public List<Product> getByCategory(long categoryId);

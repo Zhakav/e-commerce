@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.zhakav.ecommerce.entity.*;
 import com.zhakav.ecommerce.repository.*;
@@ -37,16 +38,10 @@ public class PurchasingServiceImp implements PurchasingService {
     }
 
     @Override
-    public void endPurchasing(String status, long userId) {
-
-        if(status == "Successful"){
-
-            successfulPurchase(userId);
-
-        }
+    public void endPurchasing(String status, long orderId) {
 
         PaymentDetail payment=new PaymentDetail();
-        OrderDetail orderDetail=unwrap(orderDetailRepository.findByUserId(userId), userId);
+        OrderDetail orderDetail=unwrap(orderDetailRepository.findById(orderId), orderId);
 
         payment.setAmount(orderDetail.getTotal());
         payment.setProvider("provider");
@@ -56,6 +51,12 @@ public class PurchasingServiceImp implements PurchasingService {
 
         paymentRepository.save(payment);
         orderDetailRepository.save(orderDetail);
+
+        if(status == "Successful"){
+
+            successfulPurchase(orderDetail.getUser().getId());
+
+        }
 
 
     }
@@ -75,7 +76,7 @@ public class PurchasingServiceImp implements PurchasingService {
             orderItemRepository.save(orderItem);
         }
 
-        orderDetail.setOrderItems(orderItems);
+        orderDetail.setOrderItems((Set<OrderItem>) orderItems);
 
     }
 
@@ -83,7 +84,7 @@ public class PurchasingServiceImp implements PurchasingService {
 
         ShoppingSession session=OrderingServiceImp.unwrapSession(sessionRepository.findByUserId(userId), userId);
 
-        List<CartItem> cartItems=session.getCartItems();
+        Set<CartItem> cartItems=session.getCartItems();
 
         ProductInventory inventory;
         Product product;

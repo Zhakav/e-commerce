@@ -37,6 +37,11 @@ public class SupplierServiceImp implements SupplierService {
     }
 
     @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
     public List<Supplier> getAll() {
         return (List<Supplier>) repository.findAll();
     }

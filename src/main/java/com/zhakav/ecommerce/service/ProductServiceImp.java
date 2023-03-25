@@ -33,9 +33,6 @@ public class ProductServiceImp implements ProductService {
 
         ProductInventory inventory=new ProductInventory();
         inventory.setQuantity(quantity);
-        inventory.setProduct(product);
-
-        inventoryRepository.save(inventory);
 
         product.setInventory(inventory);
 
@@ -43,13 +40,22 @@ public class ProductServiceImp implements ProductService {
             categoryRepository.findById(categoryId), categoryId);
 
         product.setCategory(category);
+        category.getProducts().add(product);
 
         Supplier supplier=SupplierServiceImp.unwrap(
             supplierRepository.findById(supplierId), supplierId);
 
         product.setSupplier(supplier);
+        supplier.getProducts().add(product);
 
-        return repository.save(product);
+        inventory.setProduct(product);
+
+        Product result=repository.save(product);
+        supplierRepository.save(supplier);
+        categoryRepository.save(category);
+        inventoryRepository.save(inventory);
+
+        return result;
 
     }
 
@@ -68,6 +74,11 @@ public class ProductServiceImp implements ProductService {
     @Override
     public void delete(long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
     }
 
     @Override

@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.zhakav.ecommerce.entity.*;
 import org.springframework.stereotype.Service;
 
-import com.zhakav.ecommerce.entity.CartItem;
-import com.zhakav.ecommerce.entity.Product;
-import com.zhakav.ecommerce.entity.ShoppingSession;
-import com.zhakav.ecommerce.entity.User;
 import com.zhakav.ecommerce.repository.CartItemRepository;
 import com.zhakav.ecommerce.repository.ShoppingSessionRepository;
 import com.zhakav.ecommerce.repository.UserRepository;
@@ -57,27 +54,33 @@ public class OrderingServiceImp implements OrderingService {
     private void saveCartItemsToSession(Set<CartItem> cartItems, ShoppingSession session) {
 
         session.setCartItems(cartItems);
-
-        cartItemRepository.saveAll(cartItems);
         
         for (CartItem item : cartItems) {
 
             item.setSession(session);
             
         }
+
+        cartItemRepository.saveAll(cartItems);
+
     }
 
     private long calculateTotal(Set<CartItem> cartItems){
 
         long total=0;
         Product product;
+        Discount discount;
 
         for (CartItem cartItem : cartItems) {
          
             product=cartItem.getProduct();
+            discount=product.getDiscount();
 
-            total+=(cartItem.getQuantity()*product.getPrice());
-
+            if(discount==null)
+                total+=(cartItem.getQuantity()*product.getPrice());
+            else
+                total+=(cartItem.getQuantity()*
+                        (product.getPrice()*(1-discount.getDiscountPercent())));
         }
 
         return total;

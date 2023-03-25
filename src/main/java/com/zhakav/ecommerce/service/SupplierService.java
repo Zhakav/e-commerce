@@ -10,6 +10,7 @@ public interface SupplierService {
     public Supplier update(Supplier supplier);
     public Supplier get(long id);
     public void delete(long id);
+    public void deleteAll();
     public List<Supplier> getAll();
 
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import com.zhakav.ecommerce.entity.ShoppingSession;
 import com.zhakav.ecommerce.service.OrderingService;
 
-import io.micrometer.core.ipc.http.HttpSender.Response;
 import lombok.AllArgsConstructor;
 
 import java.util.Set;
@@ -16,7 +15,7 @@ import java.util.Set;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/order")
-public class OrderingController {
+public class OrderController {
 
     OrderingService service;
     

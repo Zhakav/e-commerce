@@ -14,11 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class InventoryController {
 
     ProductInventoryService service;
-    @PutMapping("/{productId}/quantity/{quantity}")
+    @PutMapping("/product/{productId}/quantity/{quantity}")
     public ResponseEntity<ProductInventory> update(@PathVariable long productId, @PathVariable int quantity){
 
         return new ResponseEntity<>(service.update(quantity,productId), HttpStatus.OK);
 
+    }
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<ProductInventory> getByProduct(@PathVariable long productId){
+        return new ResponseEntity<>(service.getByProduct(productId),HttpStatus.OK);
     }
 
 }

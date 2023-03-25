@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -84,7 +85,7 @@ public class Supplier {
 
     @Nonnull
     @Column(name = "type_goods", nullable = false)
-    @NotBlank(message = "Type of goods cannot be blank!!")
+    @NotNull(message = "Type of goods cannot be null!!")
     private List<String> typeGoods;
 
     @Column(name = "created_at")

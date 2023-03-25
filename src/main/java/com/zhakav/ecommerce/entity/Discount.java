@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.entity;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.validation.constraints.NotNull;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,12 +42,12 @@ public class Discount {
 
     @NonNull
     @Column(name = "discount_percent" , nullable = false)
-    @NotBlank(message = "Discount percentage cannot be blank!!!")
+    @NotNull(message = "Discount percentage cannot be Null!!!")
     private float discountPercent;
 
     @NonNull
     @Column(name = "active" , nullable = false)
-    @NotBlank(message = "Discount activity cannot be blank!!!")
+    @NotNull (message = "Discount activity cannot be Null!!!")
     private boolean active;
 
     @Column(name = "created_at")
