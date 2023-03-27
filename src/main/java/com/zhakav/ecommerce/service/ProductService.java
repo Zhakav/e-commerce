@@ -8,6 +8,7 @@ public interface ProductService {
     
     public Product save(Product product, long categoryId, long supplierId, int quantity);
     public Product update(Product product, long categoryId, long supplierId, int quantity);
+    public Product setProductDiscount(long productId, long discountId);
     public Product get(long id);
     public void delete(long id);
     public void deleteAll();

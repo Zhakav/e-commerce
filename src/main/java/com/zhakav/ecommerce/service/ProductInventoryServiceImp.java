@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.ProductInventory;
@@ -55,7 +56,7 @@ public class ProductInventoryServiceImp implements ProductInventoryService {
         if(inventory.isPresent())
             return inventory.get();
         else
-            throw new RuntimeException("Cannot find product inventory with id : " + id);
+            throw new EntityNotFoundException(id,"Product Inventory","ID");
 
     }
     

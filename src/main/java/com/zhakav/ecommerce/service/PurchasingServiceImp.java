@@ -1,11 +1,9 @@
 package com.zhakav.ecommerce.service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import com.zhakav.ecommerce.entity.*;
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import com.zhakav.ecommerce.repository.*;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +23,15 @@ public class PurchasingServiceImp implements PurchasingService {
     ProductRepository productRepository;
 
     @Override
-    public void startPurchasing(long userId) {
+    public OrderDetail startPurchasing(long userId) {
 
         OrderDetail orderDetail=new OrderDetail();
         ShoppingSession session= OrderingServiceImp.unwrapSession(sessionRepository.findByUserId(userId), userId);
 
         setOrderItems(orderDetail, userId);
         orderDetail.setTotal(session.getTotal());
-
         orderDetailRepository.save(orderDetail);
+        return orderDetail;
 
     }
 
@@ -44,6 +42,7 @@ public class PurchasingServiceImp implements PurchasingService {
         OrderDetail orderDetail=unwrap(orderDetailRepository.findById(orderId), orderId);
 
         payment.setAmount(orderDetail.getTotal());
+        payment.setStatus(status);
         payment.setProvider("provider");
 
         orderDetail.setPaymentDetail(payment);
@@ -61,10 +60,11 @@ public class PurchasingServiceImp implements PurchasingService {
 
     }
 
-    private void setOrderItems( OrderDetail orderDetail,long sessionId){
+    @Override
+    public List<OrderItem> setOrderItems( OrderDetail orderDetail,long sessionId){
 
         List<CartItem> cartItems= cartItemRepository.findBySessionId(sessionId);
-        List<OrderItem> orderItems=Arrays.asList(null);
+        List<OrderItem> orderItems=new ArrayList<>();
 
         for (CartItem cartItem : cartItems) {
             OrderItem orderItem=new OrderItem();
@@ -76,15 +76,18 @@ public class PurchasingServiceImp implements PurchasingService {
             orderItemRepository.save(orderItem);
         }
 
-        orderDetail.setOrderItems((Set<OrderItem>) orderItems);
+        orderDetail.setOrderItems(orderItems);
+
+        return orderItems;
 
     }
 
-    private void successfulPurchase(long userId){
+    @Override
+    public void successfulPurchase(long userId){
 
         ShoppingSession session=OrderingServiceImp.unwrapSession(sessionRepository.findByUserId(userId), userId);
 
-        Set<CartItem> cartItems=session.getCartItems();
+        List<CartItem> cartItems=session.getCartItems();
 
         ProductInventory inventory;
         Product product;
@@ -119,7 +122,7 @@ public class PurchasingServiceImp implements PurchasingService {
         if(orderDetail.isPresent())
             return orderDetail.get();
         else
-            throw new RuntimeException("Cannot find order detail with id : " + id);
+            throw new EntityNotFoundException(id,"Order Detail", "ID");
 
     }
 }

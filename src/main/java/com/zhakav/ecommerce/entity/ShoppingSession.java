@@ -58,5 +58,5 @@ public class ShoppingSession {
     private User user; 
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
-    private Set<CartItem> cartItems;
+    private List<CartItem> cartItems;
 }

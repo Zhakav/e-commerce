@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.web;
 import com.zhakav.ecommerce.entity.AdminType;
 import com.zhakav.ecommerce.entity.AdminUser;
 import com.zhakav.ecommerce.service.AdminUserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +40,14 @@ public class AdminController {
     }
 
     @PostMapping("adminType/{typeId}")
-    public ResponseEntity<AdminUser> save(@RequestBody AdminUser adminUser, @PathVariable long typeId){
+    public ResponseEntity<AdminUser> save(@Valid @RequestBody AdminUser adminUser, @PathVariable long typeId){
 
         return new ResponseEntity<>(service.save(adminUser,typeId), HttpStatus.CREATED);
 
     }
 
     @PutMapping("adminType/{typeId}")
-    public ResponseEntity<AdminUser> update(@RequestBody AdminUser adminUser, @PathVariable long typeId){
+    public ResponseEntity<AdminUser> update(@Valid @RequestBody AdminUser adminUser, @PathVariable long typeId){
 
         return new ResponseEntity<>(service.update(adminUser,typeId ), HttpStatus.OK);
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.AdminType;
@@ -52,7 +53,7 @@ public class AdminTypeServiceImp implements AdminTypeService {
         if(adminType.isPresent())
             return adminType.get();
         else
-            throw new RuntimeException("Cannot find admin type with id : " + id);
+            throw new EntityNotFoundException(id,"Admin Type","ID");
 
     }
     

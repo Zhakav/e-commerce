@@ -1,6 +1,7 @@
 com\zhakav\ecommerce\validators\Telephone.class
 com\zhakav\ecommerce\entity\ProductCategory.class
 com\zhakav\ecommerce\repository\DiscountRepository.class
+com\zhakav\ecommerce\exeption\EntityNotFoundException.class
 com\zhakav\ecommerce\service\SupplierService.class
 com\zhakav\ecommerce\entity\AdminType.class
 com\zhakav\ecommerce\service\OrderingServiceImp.class
@@ -9,12 +10,14 @@ com\zhakav\ecommerce\service\ProductInventoryServiceImp.class
 com\zhakav\ecommerce\validators\MobileValidator.class
 com\zhakav\ecommerce\entity\ProductInventory.class
 com\zhakav\ecommerce\repository\CartItemRepository.class
+com\zhakav\ecommerce\exeption\ErrorResponse.class
 com\zhakav\ecommerce\repository\UserPaymentRepository.class
 com\zhakav\ecommerce\service\PurchasingServiceImp.class
 com\zhakav\ecommerce\repository\OrderItemRepository.class
 com\zhakav\ecommerce\service\DiscountServiceImp.class
 com\zhakav\ecommerce\web\UserAddressController.class
 com\zhakav\ecommerce\service\OrderingService.class
+com\zhakav\ecommerce\ApplicationExceptionHandler.class
 com\zhakav\ecommerce\service\DiscountService.class
 com\zhakav\ecommerce\entity\PaymentDetail.class
 com\zhakav\ecommerce\entity\ShoppingSession.class

@@ -1,6 +1,7 @@
 package com.zhakav.ecommerce.web;
 
 import com.zhakav.ecommerce.entity.CartItem;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import com.zhakav.ecommerce.service.OrderingService;
 
 import lombok.AllArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -27,7 +29,7 @@ public class OrderController {
     }
 
     @PostMapping("/user/{userId}")
-    public ResponseEntity<ShoppingSession> submitOrder(@RequestBody Set<CartItem> cartItems, @PathVariable long userId){
+    public ResponseEntity<ShoppingSession> submitOrder(@Valid @RequestBody List<CartItem> cartItems, @PathVariable long userId){
 
         return new ResponseEntity<>(service.order(cartItems,userId), HttpStatus.OK);
 

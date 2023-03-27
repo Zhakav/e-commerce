@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.web;
 import com.zhakav.ecommerce.entity.Discount;
 import com.zhakav.ecommerce.entity.ProductCategory;
 import com.zhakav.ecommerce.service.DiscountService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,14 @@ public class DiscountController {
     }
 
     @PostMapping
-    public ResponseEntity<Discount> save(@RequestBody Discount discount){
+    public ResponseEntity<Discount> save(@Valid @RequestBody Discount discount){
 
         return new ResponseEntity<>(service.save(discount), HttpStatus.CREATED);
 
     }
 
     @PutMapping
-    public ResponseEntity<Discount> update(@RequestBody Discount discount){
+    public ResponseEntity<Discount> update(@Valid @RequestBody Discount discount){
         return new ResponseEntity<>(service.update(discount), HttpStatus.OK);
 
     }

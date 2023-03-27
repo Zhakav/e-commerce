@@ -96,6 +96,6 @@ public class Supplier {
 
     @JsonIgnore
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
-    private Set<Product> products;
+    private List<Product> products;
 
 }

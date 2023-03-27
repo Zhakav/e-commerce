@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import com.zhakav.ecommerce.entity.ProductCategory;
 import com.zhakav.ecommerce.repository.ProductCategoryRepository;
@@ -50,7 +51,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService {
         if(category.isPresent())
             return category.get();
         else
-            throw new RuntimeException("Cannot find product category address with id : " + id);
+            throw new EntityNotFoundException(id,"Category","ID");
 
     }
     

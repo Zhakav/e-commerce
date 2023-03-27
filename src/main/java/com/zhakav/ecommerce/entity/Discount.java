@@ -61,5 +61,5 @@ public class Discount {
 
     @JsonIgnore
     @OneToMany(mappedBy = "discount")
-    private Set<Product> products;
+    private List<Product> products;
 }

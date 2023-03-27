@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.Discount;
@@ -51,7 +52,7 @@ public class DiscountServiceImp implements DiscountService {
         if(discount.isPresent())
             return discount.get();
         else
-            throw new RuntimeException("Cannot find discount with id : " + id);
+            throw new EntityNotFoundException(id,"Discount","ID");
 
     }
     

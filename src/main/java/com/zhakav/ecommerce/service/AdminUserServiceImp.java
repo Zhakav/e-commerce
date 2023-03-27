@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.AdminType;
@@ -11,6 +12,7 @@ import com.zhakav.ecommerce.repository.AdminTypeRepository;
 import com.zhakav.ecommerce.repository.AdminUserRepository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +22,7 @@ public class AdminUserServiceImp implements AdminUserService{
     AdminTypeRepository adminTypeRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public AdminUser save(AdminUser adminUser, long adminTypeId) {
         AdminType adminType=AdminTypeServiceImp.unwrap(adminTypeRepository.findById(adminTypeId), adminTypeId);
         adminUser.setAdminType(adminType);
@@ -27,6 +30,7 @@ public class AdminUserServiceImp implements AdminUserService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AdminUser update(AdminUser adminUser, long adminType) {
         return save(adminUser,adminType);
     }
@@ -66,7 +70,7 @@ public class AdminUserServiceImp implements AdminUserService{
         if(adminUser.isPresent())
             return adminUser.get();
         else
-            throw new RuntimeException("Cannot find admin user with id : " + id);
+            throw new EntityNotFoundException(id,"Admin","ID");
 
     }
     

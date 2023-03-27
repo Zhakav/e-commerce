@@ -58,7 +58,7 @@ public class OrderDetail {
 
 
     @OneToMany(mappedBy = "orderDetail", cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems;
+    private List<OrderItem> orderItems;
 
 
     @OneToOne(optional = true, cascade = CascadeType.ALL)

@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.web;
 import com.zhakav.ecommerce.entity.AdminType;
 import com.zhakav.ecommerce.entity.User;
 import com.zhakav.ecommerce.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> save(@RequestBody User user){
+    public ResponseEntity<User> save(@Valid @RequestBody User user){
 
         return new ResponseEntity<>(service.save(user), HttpStatus.CREATED);
 
     }
 
     @PutMapping
-    public ResponseEntity<User> update(@RequestBody User user){
+    public ResponseEntity<User> update(@Valid @RequestBody User user){
 
         return new ResponseEntity<>(service.update(user), HttpStatus.OK);
 

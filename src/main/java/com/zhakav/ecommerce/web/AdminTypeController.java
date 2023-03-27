@@ -2,6 +2,7 @@ package com.zhakav.ecommerce.web;
 
 import com.zhakav.ecommerce.entity.AdminType;
 import com.zhakav.ecommerce.service.AdminTypeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +30,14 @@ public class AdminTypeController {
     }
 
     @PostMapping
-    public ResponseEntity<AdminType> save(@RequestBody AdminType adminType){
+    public ResponseEntity<AdminType> save(@Valid @RequestBody AdminType adminType){
 
         return new ResponseEntity<>(service.save(adminType), HttpStatus.CREATED);
 
     }
 
     @PutMapping
-    public ResponseEntity<AdminType> update(@RequestBody AdminType adminType){
+    public ResponseEntity<AdminType> update(@Valid @RequestBody AdminType adminType){
 
         return new ResponseEntity<>(service.update(adminType), HttpStatus.OK);
 

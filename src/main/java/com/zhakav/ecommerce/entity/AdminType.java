@@ -48,5 +48,5 @@ public class AdminType {
 
     @JsonIgnore
     @OneToMany(mappedBy = "adminType", cascade = CascadeType.ALL)
-    Set<AdminUser> adminUsers;
+    List<AdminUser> adminUsers;
 }

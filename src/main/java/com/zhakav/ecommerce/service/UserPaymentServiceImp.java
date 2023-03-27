@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.User;
@@ -66,7 +67,7 @@ public class UserPaymentServiceImp implements UserPaymentService {
         if(userPayment.isPresent())
             return userPayment.get();
         else
-            throw new RuntimeException("Cannot find user payment with id : " + id);
+            throw new EntityNotFoundException(id,"User Payment","ID");
 
     }
     

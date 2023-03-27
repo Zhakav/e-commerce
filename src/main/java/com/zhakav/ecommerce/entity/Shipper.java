@@ -38,6 +38,6 @@ public class Shipper {
 
     @JsonIgnore
     @OneToMany(mappedBy = "shipper", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetail;
+    private List<OrderDetail> orderDetail;
 
 }

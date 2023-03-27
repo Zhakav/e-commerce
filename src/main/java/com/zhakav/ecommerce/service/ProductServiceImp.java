@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.Discount;
@@ -67,6 +68,16 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    public Product setProductDiscount(long productId, long discountId) {
+
+        Product product=unwrap(repository.findById(productId),productId);
+        Discount discount=DiscountServiceImp.unwrap(discountRepository.findById(discountId),discountId);
+        product.setDiscount(discount);
+
+        return repository.save(product);
+    }
+
+    @Override
     public Product get(long id) {
         return unwrap(repository.findById(id), id);
     }
@@ -128,7 +139,7 @@ public class ProductServiceImp implements ProductService {
         if(product.isPresent())
             return product.get();
         else
-            throw new RuntimeException("Cannot find product with id : " + id);
+            throw new EntityNotFoundException(id,"Product","ID");
 
     }
     

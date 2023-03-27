@@ -49,5 +49,5 @@ public class ProductCategory {
 
     @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private Set<Product> products;
+    private List<Product> products;
 }

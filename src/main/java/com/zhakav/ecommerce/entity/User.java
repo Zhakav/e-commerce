@@ -80,11 +80,11 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<UserAddress> userAddresses;
+    private List<UserAddress> userAddresses;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<UserPayment> userPayments;
+    private List<UserPayment> userPayments;
 
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -92,5 +92,5 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetail;
+    private List<OrderDetail> orderDetail;
 }

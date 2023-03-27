@@ -2,6 +2,7 @@ package com.zhakav.ecommerce.web;
 
 import com.zhakav.ecommerce.entity.UserAddress;
 import com.zhakav.ecommerce.service.UserAddressService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +39,14 @@ public class UserAddressController {
     }
 
     @PostMapping("user/{userId}")
-    public ResponseEntity<UserAddress> save(@RequestBody UserAddress userAddress, @PathVariable long userId){
+    public ResponseEntity<UserAddress> save(@Valid @RequestBody UserAddress userAddress, @PathVariable long userId){
 
         return new ResponseEntity<>(service.save(userAddress,userId), HttpStatus.CREATED);
 
     }
 
     @PutMapping("user/{userId}")
-    public ResponseEntity<UserAddress> update(@RequestBody UserAddress userAddress, @PathVariable long userId){
+    public ResponseEntity<UserAddress> update(@Valid @RequestBody UserAddress userAddress, @PathVariable long userId){
 
         return new ResponseEntity<>(service.update(userAddress,userId), HttpStatus.OK);
 

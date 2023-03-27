@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.zhakav.ecommerce.entity.*;
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
+import jakarta.websocket.Session;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.repository.CartItemRepository;
@@ -22,7 +24,7 @@ public class OrderingServiceImp implements OrderingService {
     UserRepository userRepository;
 
     @Override
-    public ShoppingSession order(Set<CartItem> cartItems, long userId) {
+    public ShoppingSession order(List<CartItem> cartItems, long userId) {
 
         ShoppingSession session=new ShoppingSession();
         User user=UserServiceImp.unwrap(userRepository.findById(userId), userId);
@@ -51,7 +53,8 @@ public class OrderingServiceImp implements OrderingService {
 
     }
 
-    private void saveCartItemsToSession(Set<CartItem> cartItems, ShoppingSession session) {
+    @Override
+    public ShoppingSession saveCartItemsToSession(List<CartItem> cartItems, ShoppingSession session) {
 
         session.setCartItems(cartItems);
         
@@ -63,9 +66,12 @@ public class OrderingServiceImp implements OrderingService {
 
         cartItemRepository.saveAll(cartItems);
 
+        return session;
+
     }
 
-    private long calculateTotal(Set<CartItem> cartItems){
+    @Override
+    public long calculateTotal(List<CartItem> cartItems){
 
         long total=0;
         Product product;
@@ -76,11 +82,13 @@ public class OrderingServiceImp implements OrderingService {
             product=cartItem.getProduct();
             discount=product.getDiscount();
 
-            if(discount==null)
-                total+=(cartItem.getQuantity()*product.getPrice());
-            else
+            if(discount!=null && discount.isActive()==true)
                 total+=(cartItem.getQuantity()*
                         (product.getPrice()*(1-discount.getDiscountPercent())));
+
+            else
+                total+=(cartItem.getQuantity()*product.getPrice());
+
         }
 
         return total;
@@ -92,7 +100,7 @@ public class OrderingServiceImp implements OrderingService {
         if(session.isPresent())
             return session.get();
         else
-            throw new RuntimeException("Cannot find shopping session with id : " + id);
+            throw new EntityNotFoundException(id,"Shopping Session", "User ID");
 
     }
 

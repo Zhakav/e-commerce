@@ -3,12 +3,14 @@ package com.zhakav.ecommerce.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.User;
 import com.zhakav.ecommerce.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +19,7 @@ public class UserServiceImp implements UserService {
     UserRepository repository;
 
     @Override
+    @Transactional(readOnly = true)
     public User save(User user) {
         return repository.save(user);
     }
@@ -51,7 +54,7 @@ public class UserServiceImp implements UserService {
         if(user.isPresent())
             return user.get();
         else
-            throw new RuntimeException("Cannot find user with id : " + id);
+            throw new EntityNotFoundException(id,"User","ID");
 
     }
 }

@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.web;
 import com.zhakav.ecommerce.entity.Supplier;
 import com.zhakav.ecommerce.entity.User;
 import com.zhakav.ecommerce.service.SupplierService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,14 @@ public class SupplierController {
     }
 
     @PostMapping
-    public ResponseEntity<Supplier> save(@RequestBody Supplier supplier){
+    public ResponseEntity<Supplier> save(@Valid @RequestBody Supplier supplier){
 
         return new ResponseEntity<>(service.save(supplier), HttpStatus.CREATED);
 
     }
 
     @PutMapping
-    public ResponseEntity<Supplier> update(@RequestBody Supplier supplier){
+    public ResponseEntity<Supplier> update(@Valid @RequestBody Supplier supplier){
 
         return new ResponseEntity<>(service.update(supplier), HttpStatus.OK);
 

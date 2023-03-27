@@ -3,6 +3,7 @@ package com.zhakav.ecommerce.web;
 import com.zhakav.ecommerce.entity.Product;
 import com.zhakav.ecommerce.entity.UserAddress;
 import com.zhakav.ecommerce.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +61,7 @@ public class ProductController {
     }
 
     @PostMapping("supplier/{supplierId}/quantity/{quantity}/category/{categoryId}")
-    public ResponseEntity<Product> save(@RequestBody Product product, @PathVariable long supplierId,
+    public ResponseEntity<Product> save(@Valid @RequestBody Product product, @PathVariable long supplierId,
                                         @PathVariable int quantity, @PathVariable long categoryId ){
 
         return new ResponseEntity<>(service.save(product,categoryId,supplierId,quantity), HttpStatus.CREATED);
@@ -68,10 +69,17 @@ public class ProductController {
     }
 
     @PutMapping("supplier/{supplierId}/quantity/{quantity}/category/{categoryId}")
-    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable long supplierId,
+    public ResponseEntity<Product> update(@Valid @RequestBody Product product, @PathVariable long supplierId,
                                               @PathVariable int quantity, @PathVariable long categoryId ){
 
         return new ResponseEntity<>(service.update(product,categoryId,supplierId,quantity), HttpStatus.OK);
+
+    }
+
+    @PostMapping("/{id}/discount/{discountId}")
+    private ResponseEntity<Product> setProductDiscount(@PathVariable long id,@PathVariable long discountId){
+
+        return new ResponseEntity<>(service.setProductDiscount(id, discountId),HttpStatus.OK);
 
     }
 
