@@ -36,7 +36,7 @@ public class PurchasingServiceImp implements PurchasingService {
     }
 
     @Override
-    public void endPurchasing(String status, long orderId) {
+    public OrderDetail endPurchasing(String status, long orderId) {
 
         PaymentDetail payment=new PaymentDetail();
         OrderDetail orderDetail=unwrap(orderDetailRepository.findById(orderId), orderId);
@@ -57,6 +57,7 @@ public class PurchasingServiceImp implements PurchasingService {
 
         }
 
+        return orderDetail;
 
     }
 
@@ -95,9 +96,9 @@ public class PurchasingServiceImp implements PurchasingService {
         for (CartItem cartItem:cartItems) {
 
             inventory= ProductInventoryServiceImp.unwrap(inventoryRepository.
-                    findByProductId(cartItem.getProduct().getId()),userId);
+                    findByProductId(cartItem.getProduct().getId()),cartItem.getProduct().getId());
 
-            inventory.setQuantity(inventory.getQuantity()-1);
+            inventory.setQuantity(inventory.getQuantity()-cartItem.getQuantity());
 
             if(inventory.getQuantity()==0){
 

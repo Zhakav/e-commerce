@@ -9,7 +9,7 @@ import java.util.List;
 public interface PurchasingService {
 
     public OrderDetail startPurchasing(long userId);
-    public void endPurchasing(String status, long userId);
+    public OrderDetail endPurchasing(String status, long userId);
     public List<OrderItem> setOrderItems(OrderDetail orderDetail, long sessionId);
     public void successfulPurchase(long userId);
     
