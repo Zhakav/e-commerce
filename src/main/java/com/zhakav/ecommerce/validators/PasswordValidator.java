@@ -2,12 +2,13 @@ package com.zhakav.ecommerce.validators;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class PasswordValidator implements ConstraintValidator<Password, String> {
-
         private boolean isValidPassword(String password) {
                 boolean isValid = true;
-                if (password.length() > 15 || password.length() < 8) {
+                if (password.length() > 75 || password.length() < 8) {
                         //System.out.println("Password must be less than 20 and more than 8 characters in length.");
                         isValid = false;
                 }
@@ -26,7 +27,7 @@ public class PasswordValidator implements ConstraintValidator<Password, String> 
                         //System.out.println("Password must have at least one number");
                         isValid = false;
                 }
-                String specialChars = "(.*[@,#,$,%].*$)";
+                String specialChars = "(.*[@,#,$,%].*)";
                 if (!password.matches(specialChars)) {
                         //System.out.println("Password must have at least one special character among @#$%");
                         isValid = false;

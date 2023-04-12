@@ -1,4 +1,4 @@
-package com.zhakav.ecommerce;
+package com.zhakav.ecommerce.unitTest;
 
 import com.zhakav.ecommerce.entity.*;
 import com.zhakav.ecommerce.repository.*;

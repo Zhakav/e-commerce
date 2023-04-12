@@ -32,17 +32,17 @@ public class UserController {
 
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<User> save(@Valid @RequestBody User user){
-
-        return new ResponseEntity<>(service.save(user), HttpStatus.CREATED);
+        service.save(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 
     @PutMapping
     public ResponseEntity<User> update(@Valid @RequestBody User user){
-
-        return new ResponseEntity<>(service.update(user), HttpStatus.OK);
+        service.update(user);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 

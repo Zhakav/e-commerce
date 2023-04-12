@@ -3,6 +3,8 @@ package com.zhakav.ecommerce.entity;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -43,12 +45,15 @@ public class User {
     @Username(message= "Invalid username!!")
     @NotBlank(message = "Username cannot be blank!!!")
     @Column(name = "username", nullable = false, unique = true)
+    @JsonProperty( value = "username", access = JsonProperty.Access.WRITE_ONLY)
     private String username;
 
     @NonNull
+
     @Password(message = "Invalid password!!")
     @NotBlank(message = "Password cannot be blank!!!")
     @Column(name = "password" , nullable = false, unique = true)
+    @JsonProperty( value = "password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NonNull

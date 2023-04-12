@@ -23,6 +23,9 @@ import com.zhakav.ecommerce.service.UserService;
 
 import jakarta.websocket.Session;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -74,6 +77,10 @@ public class ECommerceApplication implements CommandLineRunner {
 		cartItemRepository.save(cartItem1);
 		sessionRepository.save(session);
 		*/
+	}
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder(){
+		return new  BCryptPasswordEncoder();
 	}
 
 }
