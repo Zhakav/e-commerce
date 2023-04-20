@@ -5,6 +5,7 @@ import com.zhakav.ecommerce.exeption.EntityNotFoundException;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -12,7 +13,10 @@ import java.io.IOException;
 public class ExceptionHandlerFilter extends OncePerRequestFilter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain)
             throws ServletException, IOException {
 
         try {
@@ -34,10 +38,16 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
         }
     }
 
-    private HttpServletResponse editResponse(HttpServletResponse response,int status, String message) throws IOException {
+    private HttpServletResponse editResponse(
+            @NonNull HttpServletResponse response,
+            int status,
+            String message)
+            throws IOException {
+
         response.setStatus(status);
         response.getWriter().write(message);
         response.getWriter().flush();
+
         return response;
     }
 }

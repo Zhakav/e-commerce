@@ -1,5 +1,6 @@
 package com.zhakav.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import org.joda.time.LocalDateTime;
 
@@ -31,7 +32,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "admin_users")
-public class AdminUser {
+public class AdminUser{
  
     @Id
     @Column(name = "admin_user_id")
@@ -41,6 +42,7 @@ public class AdminUser {
     @NonNull
     @Username(message = "Invalid username!!")
     @Column(name = "username" , nullable = false, unique = true)
+    @JsonProperty( value = "username", access = JsonProperty.Access.WRITE_ONLY)
     @NotBlank(message = "Username cannot be blank!!!")
     private String username;
 
@@ -48,6 +50,7 @@ public class AdminUser {
     @Password(message = "Invalid password!!")
     @Column(name = "password" , nullable = false, unique = true)
     @NotBlank(message = "Password cannot be blank!!!")
+    @JsonProperty( value = "password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NonNull

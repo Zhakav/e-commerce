@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +16,8 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/product")
+@PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN' , 'USER')")
 public class ProductController {
-
     ProductService service;
 
     @GetMapping("/{id}")
@@ -53,6 +55,7 @@ public class ProductController {
 
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAll(){
 
@@ -60,6 +63,7 @@ public class ProductController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @PostMapping("supplier/{supplierId}/quantity/{quantity}/category/{categoryId}")
     public ResponseEntity<Product> save(@Valid @RequestBody Product product, @PathVariable long supplierId,
                                         @PathVariable int quantity, @PathVariable long categoryId ){
@@ -68,6 +72,7 @@ public class ProductController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @PutMapping("supplier/{supplierId}/quantity/{quantity}/category/{categoryId}")
     public ResponseEntity<Product> update(@Valid @RequestBody Product product, @PathVariable long supplierId,
                                               @PathVariable int quantity, @PathVariable long categoryId ){
@@ -76,6 +81,7 @@ public class ProductController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @PostMapping("/{id}/discount/{discountId}")
     private ResponseEntity<Product> setProductDiscount(@PathVariable long id,@PathVariable long discountId){
 
@@ -83,6 +89,7 @@ public class ProductController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteById(@PathVariable long id) {
 
@@ -91,6 +98,7 @@ public class ProductController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @DeleteMapping("/all")
     public ResponseEntity<HttpStatus> deleteAll(){
         service.deleteAll();

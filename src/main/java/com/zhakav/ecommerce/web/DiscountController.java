@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/discount")
+@PreAuthorize("hasAnyRole ('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
 public class DiscountController {
 
     DiscountService service;
@@ -31,7 +33,6 @@ public class DiscountController {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 
     }
-
     @PostMapping
     public ResponseEntity<Discount> save(@Valid @RequestBody Discount discount){
 
@@ -44,14 +45,12 @@ public class DiscountController {
         return new ResponseEntity<>(service.update(discount), HttpStatus.OK);
 
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteById(@PathVariable long id) {
 
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
     @DeleteMapping("/all")
     public ResponseEntity<HttpStatus> deleteAll(){
         service.deleteAll();

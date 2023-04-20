@@ -81,6 +81,7 @@ com\zhakav\ecommerce\ECommerceApplication.class
 com\zhakav\ecommerce\entity\Shipper.class
 com\zhakav\ecommerce\entity\Supplier.class
 com\zhakav\ecommerce\repository\PaymentDetailRepository.class
+com\zhakav\ecommerce\entity\EntityConstants.class
 com\zhakav\ecommerce\repository\OrderDetailRepository.class
 com\zhakav\ecommerce\service\ProductCategoryService.class
 com\zhakav\ecommerce\entity\UserPayment.class

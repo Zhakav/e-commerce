@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/supplier")
+@PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'SHIPPING_ADMIN')")
 public class SupplierController {
 
     SupplierService service;
@@ -32,6 +34,7 @@ public class SupplierController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @PostMapping
     public ResponseEntity<Supplier> save(@Valid @RequestBody Supplier supplier){
 
@@ -39,6 +42,7 @@ public class SupplierController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @PutMapping
     public ResponseEntity<Supplier> update(@Valid @RequestBody Supplier supplier){
 
@@ -46,6 +50,7 @@ public class SupplierController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteById(@PathVariable long id) {
 
@@ -53,6 +58,7 @@ public class SupplierController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN' , 'CONTENT_ADMIN')")
     @DeleteMapping("/all")
     public ResponseEntity<HttpStatus> deleteAll(){
         service.deleteAll();

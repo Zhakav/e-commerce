@@ -9,6 +9,7 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\se
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\OrderingService.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\AdminType.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\PurchasingService.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\EntityConstants.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\security\SecurityConfig.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\PurchaseController.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\UserPaymentRepository.java

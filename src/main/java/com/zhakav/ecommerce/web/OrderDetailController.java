@@ -6,6 +6,7 @@ import com.zhakav.ecommerce.service.OrderDetailService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/orderDetail")
+@PreAuthorize("hasAnyRole ('SUPER_ADMIN' , 'STORE_ADMIN' , 'SHIPPING_ADMIN' , 'PAYMENT_GATEWAY_ADMIN') ")
 public class OrderDetailController {
 
     OrderDetailService service;

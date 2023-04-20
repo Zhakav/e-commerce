@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.zhakav.ecommerce.exeption.EntityNotFoundException;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zhakav.ecommerce.entity.AdminType;
@@ -21,23 +23,37 @@ public class AdminUserServiceImp implements AdminUserService{
     AdminUserRepository repository;
     AdminTypeRepository adminTypeRepository;
 
+    @Lazy
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
-    @Transactional(readOnly = true)
     public AdminUser save(AdminUser adminUser, long adminTypeId) {
+
         AdminType adminType=AdminTypeServiceImp.unwrap(adminTypeRepository.findById(adminTypeId), adminTypeId);
         adminUser.setAdminType(adminType);
+
+        adminUser.setPassword(bCryptPasswordEncoder.encode(adminUser.getPassword()));
+
         return repository.save(adminUser);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public AdminUser update(AdminUser adminUser, long adminType) {
+
+        adminUser.setPassword(bCryptPasswordEncoder.encode(adminUser.getPassword()));
+
         return save(adminUser,adminType);
+
     }
 
     @Override
     public AdminUser get(long id) {
         return unwrap(repository.findById(id),id);
+    }
+
+    @Override
+    public AdminUser getByUsername(String username) {
+        return unwrap(repository.findByUsername(username),404);
     }
 
     @Override

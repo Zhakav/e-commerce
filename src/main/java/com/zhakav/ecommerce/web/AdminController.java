@@ -7,12 +7,14 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@PreAuthorize("hasAnyRole('SUPER_ADMIN')")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -39,14 +41,14 @@ public class AdminController {
 
     }
 
-    @PostMapping("adminType/{typeId}")
+    @PostMapping("/adminType/{typeId}")
     public ResponseEntity<AdminUser> save(@Valid @RequestBody AdminUser adminUser, @PathVariable long typeId){
 
         return new ResponseEntity<>(service.save(adminUser,typeId), HttpStatus.CREATED);
 
     }
 
-    @PutMapping("adminType/{typeId}")
+    @PutMapping("/adminType/{typeId}")
     public ResponseEntity<AdminUser> update(@Valid @RequestBody AdminUser adminUser, @PathVariable long typeId){
 
         return new ResponseEntity<>(service.update(adminUser,typeId ), HttpStatus.OK);

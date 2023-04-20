@@ -6,11 +6,13 @@ import com.zhakav.ecommerce.service.ProductInventoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/inventory")
+@PreAuthorize("hasAnyRole ('SUPER_ADMIN' , 'STORE_ADMIN' , 'SHIPPING_ADMIN')")
 public class InventoryController {
 
     ProductInventoryService service;

@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserController {
 
     UserService service;
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable long id){
 
@@ -25,6 +27,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAll(){
 
@@ -45,7 +48,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
-
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteById(@PathVariable long id) {
 
@@ -53,6 +56,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN' , 'STORE_ADMIN')")
     @DeleteMapping("/all")
     public ResponseEntity<HttpStatus> deleteAll(){
         service.deleteAll();
