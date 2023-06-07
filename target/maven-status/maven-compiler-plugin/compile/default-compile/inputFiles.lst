@@ -27,6 +27,7 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\se
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\ApplicationExceptionHandler.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\ShoppingSessionRepository.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\ProductCategoryController.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\security\filter\AdminAuthenticationFilter.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\AdminTypeServiceImp.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\ProductInventory.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\Username.java
@@ -42,6 +43,7 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\re
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\PaymentDetailRepository.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\OrderItem.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\Telephone.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\solr\HttpSolrContext.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\TelephoneValidator.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\CartItem.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\web\AdminController.java
@@ -55,6 +57,7 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\en
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\ProductCategory.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\User.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\entity\UserAddress.java
+S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\security\filter\UserAuthenticationFilter.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\OrderDetailServiceImp.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\AdminTypeService.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\ProductCategoryService.java
@@ -84,7 +87,6 @@ S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\se
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\service\UserAddressService.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\exeption\EntityNotFoundException.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\CartItemRepository.java
-S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\security\filter\AuthenticationFilter.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\AdminUserRepository.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\validators\PostalCodeValidator.java
 S:\programing\ECommerce project\e-commerce\src\main\java\com\zhakav\ecommerce\repository\OrderDetailRepository.java
